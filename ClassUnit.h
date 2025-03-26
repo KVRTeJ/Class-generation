@@ -1,6 +1,8 @@
 #ifndef CLASSUNIT_H
 #define CLASSUNIT_H
 
+#include <vector>
+
 #include "Unit.h"
 
 class ClassUnit : public Unit
