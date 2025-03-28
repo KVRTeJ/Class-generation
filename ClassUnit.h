@@ -7,7 +7,7 @@
 
 class ClassUnit : public Unit {
 public:
-    enum AccessModifier {
+    enum AccessModifier { //TODO: to struct
         PUBLIC,
         PROTECTED,
         PRIVATE
@@ -25,6 +25,6 @@ protected:
     std::vector<Fields> m_fields;
 };
 
-const std::vector<std::string> ClassUnit::ACCESS_MODIFIERS = {"public", "protected", "private"};
+const std::vector<std::string> ClassUnit::ACCESS_MODIFIERS = {"public", "protected", "private"}; //TODO: need to redefine in derived classes
 
 #endif // CLASSUNIT_H

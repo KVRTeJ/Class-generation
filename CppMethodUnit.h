@@ -1,9 +1,9 @@
 #ifndef CPPMETHODUNIT_H
 #define CPPMETHODUNIT_H
 
-#include "Unit.h"
+#include "MethodUnit.h"
 
-class CppMethodUnit : public Unit {
+class CppMethodUnit : public MethodUnit {
 public:
     enum Modifier {
         STATIC = 1,
@@ -13,7 +13,7 @@ public:
 
 public:
     CppMethodUnit(const std::string &name, const std::string &returnType, Flags flags) :
-        m_name(name), m_returnType(returnType), m_flags(flags)
+        MethodUnit(name, returnType, flags)
     { }
 
     void add(const std::shared_ptr<Unit> &unit, Flags /* flags */ = 0) {
@@ -42,11 +42,6 @@ public:
 
         return result;
     }
-private:
-    std::string m_name;
-    std::string m_returnType;
-    Flags m_flags;
-    std::vector< std::shared_ptr<Unit>> m_body;
 };
 
 #endif // CPPMETHODUNIT_H
