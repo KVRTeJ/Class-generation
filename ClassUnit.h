@@ -7,32 +7,16 @@
 
 class ClassUnit : public Unit {
 public:
-    struct BaseAccessModifier {
-        static const Flags PUBLIC = 0;
-        static const Flags PROTECTED = 1;
-        static const Flags PRIVATE = 2;
+    enum BaseAccessModifier {
+        PUBLIC,
+        PROTECTED,
+        PRIVATE
     };
 
+    static const std::vector<std::string> BASE_ACCESS_MODIFIERS;
 public:
     explicit ClassUnit(const std::string &name) : m_name(name) {
-        _initAccessModifiers();
-
-        m_fields.resize(m_accessModifiers.size());
-    }
-
-    std::vector<std::string> getAccessModifiers() const {
-        return m_accessModifiers;
-    }
-
-protected:
-    virtual void _initAccessModifiers() {
-        m_accessModifiers = {"public", "protected", "private"};
-    }
-
-    virtual void _addAccessModifiers(const std::vector<std::string> &other) {
-        for(auto it = other.begin(); it != other.end(); ++it) {
-            m_accessModifiers.push_back(*it);
-        }
+        m_fields.resize(BASE_ACCESS_MODIFIERS.size());
     }
 
 protected:
@@ -40,9 +24,8 @@ protected:
 
     using Fields = std::vector<std::shared_ptr<Unit>>;
     std::vector<Fields> m_fields;
-
-    std::vector<std::string> m_accessModifiers;
 };
 
+const std::vector<std::string> ClassUnit::BASE_ACCESS_MODIFIERS = {"public", "protected", "private"};
 
 #endif // CLASSUNIT_H

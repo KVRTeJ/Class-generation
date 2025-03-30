@@ -5,6 +5,13 @@
 
 class CppMethodUnit : public MethodUnit {
 public:
+    enum BaseModifier {
+        STATIC = 1,
+        VIRTUAL = 1 << 1,
+        CONST = 1 << 2
+    };
+
+public:
     CppMethodUnit(const std::string &name, const std::string &returnType, Flags flags = 0) :
     MethodUnit(name, returnType, flags)
     { }

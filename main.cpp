@@ -7,16 +7,16 @@
 std::string generateProgram() {
     CppClassUnit myClass( "MyClass" );
     myClass.add(
-        std::make_shared< CppMethodUnit >( "testFunc1", "void",  CppMethodUnit::base.CONST),
+        std::make_shared< CppMethodUnit >( "testFunc1", "void",  0),
         CppClassUnit::BaseAccessModifier::PUBLIC
         );
     myClass.add(
-        std::make_shared< CppMethodUnit >( "testFunc2", "void", 0 ),
+        std::make_shared< CppMethodUnit >( "testFunc2", "void", CppMethodUnit::STATIC ),
         CppClassUnit::BaseAccessModifier::PRIVATE
         );
     myClass.add(
-        std::make_shared< CppMethodUnit >( "testFunc3", "void", 0 |
-                                                                0 ),
+        std::make_shared< CppMethodUnit >( "testFunc3", "void", CppMethodUnit::CONST |
+                                                                CppMethodUnit::VIRTUAL ),
         CppClassUnit::BaseAccessModifier::PUBLIC
         );
     auto method = std::make_shared< CppMethodUnit >( "testFunc4", "void",
