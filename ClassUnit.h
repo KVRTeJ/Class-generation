@@ -7,24 +7,33 @@
 
 class ClassUnit : public Unit {
 public:
-    enum AccessModifier { //TODO: to struct
+    enum AccessModifier { //TODO: to struct ????
         PUBLIC,
         PROTECTED,
         PRIVATE
     };
 
-    static const std::vector<std::string> ACCESS_MODIFIERS;
 public:
     explicit ClassUnit(const std::string &name) : m_name(name) {
-        m_fields.resize(ACCESS_MODIFIERS.size());
+        if(!m_accessModifiers.size()) {
+            _initAccesModifiers();
+        }
+
+        m_fields.resize(m_accessModifiers.size());
+    }
+
+protected:
+    virtual void _initAccesModifiers() {
+        m_accessModifiers = {"public", "protected", "private"};
     }
 
 protected:
     std::string m_name;
+
     using Fields = std::vector<std::shared_ptr<Unit>>;
     std::vector<Fields> m_fields;
-};
 
-const std::vector<std::string> ClassUnit::ACCESS_MODIFIERS = {"public", "protected", "private"}; //TODO: need to redefine in derived classes
+    std::vector<std::string> m_accessModifiers;
+};
 
 #endif // CLASSUNIT_H

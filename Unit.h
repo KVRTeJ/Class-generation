@@ -17,10 +17,10 @@ public:
 
 protected:
     virtual std::string generateShift(unsigned int level) const {
-        static const auto DEFAULT_SHIFT = " ";
+        static const auto DEFAULT_SHIFT = "\t";
         std::string result;
 
-        for( unsigned int i = 0; i < level; ++i )
+        for(unsigned int i = 0; i < level; ++i)
             result += DEFAULT_SHIFT;
 
         return result;
@@ -28,3 +28,4 @@ protected:
 };
 
 #endif // UNIT_H
+

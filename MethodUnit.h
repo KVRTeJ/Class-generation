@@ -1,6 +1,8 @@
 #ifndef METHODUNIT_H
 #define METHODUNIT_H
 
+#include <vector>
+
 #include "Unit.h"
 
 class MethodUnit : public Unit {
@@ -20,7 +22,7 @@ protected:
     std::string m_name;
     std::string m_returnType;
     Flags m_flags;
-    std::vector< std::shared_ptr<Unit>> m_body;
+    std::vector<std::shared_ptr<Unit>> m_body;
 };
 
 #endif // METHODUNIT_H
