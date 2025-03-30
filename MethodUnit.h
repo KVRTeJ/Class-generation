@@ -7,10 +7,10 @@
 
 class MethodUnit : public Unit {
 public:
-    enum Modifier {
-        STATIC = 1,
-        CONST = 1 << 1,
-        VIRTUAL = 1 << 2
+    struct BaseModifier {
+        static const Flags STATIC = 1;
+        static const Flags CONST = 2;
+        static const Flags VIRTUAL = 3;
     };
 
 public:

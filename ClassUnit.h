@@ -8,14 +8,14 @@
 class ClassUnit : public Unit {
 public:
     struct BaseAccessModifier {
-        static const unsigned short PUBLIC = 0;
-        static const unsigned short PROTECTED = 1;
-        static const unsigned short PRIVATE = 2;
+        static const Flags PUBLIC = 0;
+        static const Flags PROTECTED = 1;
+        static const Flags PRIVATE = 2;
     };
 
 public:
     explicit ClassUnit(const std::string &name) : m_name(name) {
-         _initAccessModifiers();
+        _initAccessModifiers();
 
         m_fields.resize(m_accessModifiers.size());
     }
