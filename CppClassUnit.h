@@ -7,11 +7,16 @@
 
 class CppClassUnit : public ClassUnit {
 public:
-    explicit CppClassUnit(const std::string &name) : ClassUnit(name)
-    { }
+    struct CppAccessModifier : public BaseAccessModifier {
+        static const unsigned int TEST = 3;
+    };
 
-    void add(const std::shared_ptr<Unit> &unit, Flags flags) {
-        int accessModifier = PRIVATE;
+public:
+    explicit CppClassUnit(const std::string &name) : ClassUnit(name)
+    { _addAccessModifiers({"test"}); }
+
+    void add(const std::shared_ptr<Unit> &unit, Flags flags) override {
+        int accessModifier = CppAccessModifier::PRIVATE;
 
         if(flags < m_accessModifiers.size()) {
             accessModifier = flags;
@@ -20,7 +25,7 @@ public:
         m_fields[accessModifier].push_back(unit);
     }
 
-    std::string compile(unsigned int level = 0) const {
+    std::string compile(unsigned int level = 0) const override {
         std::string result = generateShift(level) + "class " + m_name + " {\n";
         for(size_t i = 0; i < m_accessModifiers.size(); ++i) {
             if(m_fields[i].empty()) {
@@ -36,6 +41,11 @@ public:
         }
         result += generateShift(level) + "};\n";
         return result;
+    }
+
+protected:
+    void _initAccessModifiers() override {
+        m_accessModifiers = {"public", "protected", "private", "test"};
     }
 
 };
