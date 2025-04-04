@@ -5,6 +5,7 @@
 #include "CppPrintOperatorUnit.h"
 
 #include "JavaPrintMethodUnit.h"
+#include "JavaMethodUnit.h"
 
 std::string generateProgram() {
     CppClassUnit myClass( "MyClass" );
@@ -31,7 +32,7 @@ std::string generateProgram() {
 
 int main() {
     //std::cout << generateProgram() << std::endl;
-    JavaPrintOperatorUnit boo("JAVA IS HERE");
+    JavaMethodUnit boo("JAVA_IS_HERE", "void", (JavaMethodUnit::ABSTRACT | JavaMethodUnit::STATIC | JavaMethodUnit::FINAL));
     std::cout << boo.compile() << std::endl;
     return 0;
 }
