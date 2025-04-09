@@ -43,6 +43,8 @@ public:
 
         return result;
     }
+
+    Flags getFlags() const override {return m_flags;}
 };
 
 
