@@ -11,8 +11,6 @@ public:
         m_name(name), m_returnType(returnType), m_flags(flags)
     { }
 
-    Flags getFlags() const override {return m_flags;}
-
 protected:
     std::string m_name;
     std::string m_returnType;
