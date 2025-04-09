@@ -11,6 +11,9 @@ HEADERS += \
     CppClassUnit.h \
     CppMethodUnit.h \
     CppPrintOperatorUnit.h \
+    CsClassUnit.h \
+    CsMethodUnit.h \
+    CsPrintOperatorUnit.h \
     JavaClassUnit.h \
     JavaMethodUnit.h \
     JavaPrintMethodUnit.h \
