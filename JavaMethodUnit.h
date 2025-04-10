@@ -26,12 +26,12 @@ public:
     std::string compile(unsigned int level = 0) const override {
         std::string result = generateShift(level);
 
-        if(m_flags & STATIC)
-            result += "static ";
-        if(m_flags & FINAL)
-            result += "final ";
-        else if((m_flags & ABSTRACT) && !(m_flags & STATIC) && !(m_flags & FINAL))
+        if(m_flags & ABSTRACT)
             result += "abstract ";
+        if(m_flags & FINAL && !(m_flags & ABSTRACT))
+            result += "final ";
+        else if((m_flags & STATIC) && !(m_flags & ABSTRACT))
+            result += "static ";
 
         result += m_returnType + ' ';
         result += m_name + "()";
