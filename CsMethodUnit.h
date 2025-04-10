@@ -5,7 +5,7 @@
 
 class CsMethodUnit : public MethodUnit {
 public:
-    enum Modifier {
+    enum Modifier : Flags {
         STATIC = 1,
         VIRTUAL = 1 << 1,
         ABSTRACT = 1 << 2,

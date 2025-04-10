@@ -5,7 +5,7 @@
 
 class JavaMethodUnit : public MethodUnit {
 public:
-    enum Modifier {
+    enum Modifier : Flags {
         STATIC = 1,
         FINAL = 1 << 1,
         ABSTRACT = 1 << 2,

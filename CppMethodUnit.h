@@ -5,7 +5,7 @@
 
 class CppMethodUnit : public MethodUnit {
 public:
-    enum Modifier {
+    enum Modifier : Flags {
         STATIC = 1,
         VIRTUAL = 1 << 1,
         CONST = 1 << 2
