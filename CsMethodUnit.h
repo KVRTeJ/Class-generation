@@ -7,12 +7,11 @@ class CsMethodUnit : public MethodUnit {
 public:
     enum Modifier {
         STATIC = 1,
-        ABSTRACT = 1 << 1,
-        VIRTUAL = 1 << 2,
+        VIRTUAL = 1 << 1,
+        ABSTRACT = 1 << 2,
         SEALED = 1 << 3,
         READONLY = 1 << 4,
         CONST = 1 << 5,
-        EXTERN = 1 << 6
     };
 
 public:
@@ -25,7 +24,36 @@ public:
     }
 
     std::string compile(unsigned int level = 0) const override {
-        return {};
+        std::string result = generateShift(level);
+
+        if(m_flags & ABSTRACT)
+            result += "abstract ";
+
+        if((m_flags & STATIC) && !(m_flags & ABSTRACT))
+            result += "static ";
+        else if(m_flags & VIRTUAL)
+            result += "virtual ";
+
+        if((m_flags & SEALED) && !(m_flags & ABSTRACT))
+            result += "sealed ";
+
+        if(m_flags & READONLY)
+            result += "readonly ";
+        else if(m_flags & CONST)
+            result += "const ";
+
+        result += m_returnType + ' ';
+        result += m_name + "() ";
+
+
+        result += "{\n";
+        for(auto it = m_body.begin(); it != m_body.end(); ++it) {
+            result += (*it)->compile(level + 1);
+        }
+
+        result += generateShift(level) + "}\n";
+
+        return result;
     }
 
     Flags getFlags() const override {return m_flags;}
