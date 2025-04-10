@@ -8,6 +8,8 @@
 #include "JavaMethodUnit.h"
 #include "JavaClassUnit.h"
 
+#include "CsPrintOperatorUnit.h"
+
 std::string generateProgram() {
     CppClassUnit myClass( "MyClass" );
     myClass.add(
@@ -32,18 +34,9 @@ std::string generateProgram() {
 }
 
 int main() {
-    //std::cout << generateProgram() << std::endl;
-    JavaMethodUnit boo("JAVA_IS_HERE", "void", (JavaMethodUnit::FINAL | JavaMethodUnit::STATIC));
-    boo.add(std::make_shared<JavaPrintOperatorUnit>(R"(Hello, world!\n)"));
-    boo.add(std::make_shared<JavaPrintOperatorUnit>(R"(Bye, world!\n)"));
 
-    JavaMethodUnit boo1("JAVA_IS_HERE2", "string", (JavaMethodUnit::ABSTRACT | JavaMethodUnit::STATIC));
-    JavaMethodUnit boo2("JAVA_IS_HERE3", "int", (JavaMethodUnit::STATIC));
+    CsPrintOperatorUnit boo("C#: Hello, world!");
+    std::cout << boo.compile() << std::endl;
 
-    JavaClassUnit foo("JavaClass");
-    foo.add(std::make_shared<JavaMethodUnit>(boo), 0);
-    foo.add(std::make_shared<JavaMethodUnit>(boo1), 2);
-    foo.add(std::make_shared<JavaMethodUnit>(boo2), 0);
-    std::cout << foo.compile();
     return 0;
 }
