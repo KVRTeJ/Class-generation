@@ -5,7 +5,7 @@
 
 class CppMethodUnit : public MethodUnit {
 public:
-    enum BaseModifier {
+    enum Modifier {
         STATIC = 1,
         VIRTUAL = 1 << 1,
         CONST = 1 << 2
@@ -22,16 +22,16 @@ public:
 
     std::string compile(unsigned int level = 0) const override {
         std::string result = generateShift(level);
-        if(m_flags & BaseModifier::STATIC)
+        if(m_flags & Modifier::STATIC)
             result += "static ";
-        else if(m_flags & BaseModifier::VIRTUAL)
+        else if(m_flags & Modifier::VIRTUAL)
             result += "virtual ";
 
 
         result += m_returnType + " ";
         result += m_name + "()";
 
-        if(m_flags & BaseModifier::CONST)
+        if(m_flags & Modifier::CONST)
             result += " const";
 
         result += " {\n";
