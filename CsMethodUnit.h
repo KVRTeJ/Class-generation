@@ -20,6 +20,9 @@ public:
     { }
 
     void add(const std::shared_ptr<Unit> &unit, Flags /* flags */ = 0) override {
+        if(m_flags & ABSTRACT)
+            return;
+
         m_body.push_back(unit);
     }
 
@@ -43,10 +46,14 @@ public:
             result += "const ";
 
         result += m_returnType + ' ';
-        result += m_name + "() ";
+        result += m_name + "()";
 
+        if(m_flags & ABSTRACT) {
+            result += ";\n";
+            return result;
+        }
 
-        result += "{\n";
+        result += " {\n";
         for(auto it = m_body.begin(); it != m_body.end(); ++it) {
             result += (*it)->compile(level + 1);
         }
