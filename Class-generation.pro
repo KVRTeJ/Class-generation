@@ -14,6 +14,7 @@ HEADERS += \
     CsClassUnit.h \
     CsMethodUnit.h \
     CsPrintOperatorUnit.h \
+    Factory.h \
     JavaClassUnit.h \
     JavaMethodUnit.h \
     JavaPrintMethodUnit.h \

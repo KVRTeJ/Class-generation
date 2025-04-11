@@ -22,12 +22,12 @@ public:
         m_fields.resize(BASE_ACCESS_MODIFIERS.size() + CS_ACCESS_MODIFIERS.size());
     }
 
-    void add(const std::shared_ptr<Unit> &unit, Flags flags = 0) override {
+    void add(const std::shared_ptr<Unit> &unit, Flags flags) override {
         if(!isAbstract & static_cast<bool>(unit->getFlags() & CsMethodUnit::ABSTRACT)) {
             isAbstract = true;
         }
 
-        int accessModifier = BaseAccessModifier::PUBLIC;
+        int accessModifier = BaseAccessModifier::PRIVATE;
 
         if(flags < (BASE_ACCESS_MODIFIERS.size() + CS_ACCESS_MODIFIERS.size())) {
             accessModifier = flags;
