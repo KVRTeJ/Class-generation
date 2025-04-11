@@ -8,6 +8,16 @@ SOURCES += \
 
 HEADERS += \
     ClassUnit.h \
+    CppClassUnit.h \
+    CppMethodUnit.h \
+    CppPrintOperatorUnit.h \
+    CsClassUnit.h \
+    CsMethodUnit.h \
+    CsPrintOperatorUnit.h \
+    Factory.h \
+    JavaClassUnit.h \
+    JavaMethodUnit.h \
+    JavaPrintMethodUnit.h \
     MethodUnit.h \
     PrintOperatorUnit.h \
     Unit.h

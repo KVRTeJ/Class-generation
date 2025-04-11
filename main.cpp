@@ -1,32 +1,27 @@
 #include <iostream>
 
-#include "ClassUnit.h"
-#include "MethodUnit.h"
-#include "PrintOperatorUnit.h"
+#include "Factory.h"
 
-std::string generateProgram() {
-    ClassUnit myClass( "MyClass" );
-    myClass.add(
-        std::make_shared< MethodUnit >( "testFunc1", "void", 0 ),
+std::string generateProgram(iFactory *factory) {
+    std::shared_ptr<ClassUnit> myClass = factory->makeClass("MyClass");
+    myClass->add(
+        factory->makeMethod( "testFunc1", "void", 0 ),
         ClassUnit::PUBLIC
         );
-    myClass.add(
-        std::make_shared< MethodUnit >( "testFunc2", "void", MethodUnit::STATIC ),
+    myClass->add(
+        factory->makeMethod("testFunc2", "void", 1),
         ClassUnit::PRIVATE
         );
-    myClass.add(
-        std::make_shared< MethodUnit >( "testFunc3", "void", MethodUnit::VIRTUAL |
-                                                              MethodUnit::CONST ),
+    myClass->add(
+        factory->makeMethod("testFunc3", "void", 1 | (1 << 2)),
         ClassUnit::PUBLIC
         );
-    auto method = std::make_shared< MethodUnit >( "testFunc4", "void",
-                                               MethodUnit::STATIC );
-    method->add( std::make_shared< PrintOperatorUnit >( R"(Hello, world!\n)" ) );
-    myClass.add( method, ClassUnit::PROTECTED );
-    return myClass.compile();
+    auto method = factory->makeMethod("testFunc4", "void", 1);
+    // method->add(factory->makePrintOperator("Hello, world!\n"));
+    myClass->add(method, (1 << 3));
+    return myClass->compile();
 }
 
 int main() {
-    std::cout << generateProgram() << std::endl;
-    return 0;
+
 }
